@@ -1,6 +1,6 @@
 # Árbol Multicamino 
-## Laboratorio No.1
-### Estructura de Datos II
+**Laboratorio No.1**
+**Estructura de Datos II**
 
 **Objetivos**
 -Uso de arboles Multicamino
