@@ -3,6 +3,6 @@
 **Estructura de Datos II**
 
 **Objetivos**\
--Uso de arboles Multicamino\
+-Uso de Árboles Multicamino\
 -Múltiples proyectos en una única solución\
 -Manipulación de archivos usando API\
