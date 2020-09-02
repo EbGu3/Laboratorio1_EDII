@@ -31,9 +31,19 @@ namespace SerieI
             }
             else if (Nodo.Values.Count < grado - 1)
             {
-                Nodo.Values.Add(Valor);
-                Nodo.Values.Sort();
-                return Nodo;
+                if(Nodo.Values.Count == 0)
+                {
+                    Nodo.Values.Add(Valor);
+                    Nodo.Values.Sort();
+                    return Nodo;
+                }
+                else
+                {
+                    //Buscar Igualaciones en el nodo
+                    //Agregar el nuevo valor al nodo
+                    Nodo.Values.Sort();
+                    return Nodo;
+                }
             }
             else
             {
@@ -51,8 +61,8 @@ namespace SerieI
             //Comparar si el dato existe
             while(i < grado -1)
             {
-               
-                
+                if (CompareToTamaño(Nodo.Values[i], ValorActual) != 0)
+                {
                     if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
                     {
                         i++;
@@ -65,7 +75,8 @@ namespace SerieI
                         return Nodo;
                     }
 
-                
+                }
+                else { i++; }
             }
             
 
@@ -76,9 +87,21 @@ namespace SerieI
 
         public int CompareToTamaño(T ValorNodo, T ValorActual)
         {
-        
-            // 1 es mayor, -1 es menor
-            int Resultado = ( Convert.ToInt32(ValorActual) > Convert.ToInt32(ValorNodo)) ? 1 : -1;
+            var Resultado = 0;
+            // 1 es mayor, -1 es menor, son iguales
+            if(Convert.ToInt32(ValorActual) == Convert.ToInt32(ValorNodo))
+            {
+                Resultado = 0;
+            }
+            else if(Convert.ToInt32(ValorActual) > Convert.ToInt32(ValorNodo))
+            {
+                Resultado = 1; 
+            }
+            else
+            {
+                Resultado = -1;
+            }
+            
             return Resultado;
 
         }
