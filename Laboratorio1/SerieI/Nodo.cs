@@ -8,14 +8,14 @@ namespace SerieI
     {
 
 
-        protected List<T> Values { get; set; }
-        protected T[] Children { get; set; }
+        public List<T> Values { get; set; }
+        public Nodo<T>[] Children { get; set; }
 
         public Nodo(int grado)
         {
 
             Values = new List<T>();
-            Children = new T[grado];
+            Children = new Nodo<T>[grado];
         }
 
 
@@ -37,39 +37,51 @@ namespace SerieI
             }
             else
             {
-
+                EntreNodo(grado,Valor, Nodo);
             }
 
 
             return Nodo;
         }
 
-        public Nodo<T> EntreNodo(T ValorActual, Nodo<T> Nodo)
+        public Nodo<T> EntreNodo(int grado,T ValorActual, Nodo<T> Nodo)
         {
-            var i = 0;
+            int i = 0;
 
-            if (Nodo.Values[i] != null)
+            //Comparar si el dato existe
+            while(i < grado -1)
             {
-                //-1 Significa que esta el valor
-                if(Nodo.Values[i].CompareTo(ValorActual) == -1)
-                {
-                    
-             
-                    
-                }
-            }
-            else
-            {
+               
+                
+                    if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        Nodo<T> NodoH = new Nodo<T>(grado);
+                        CrearNodo(grado, NodoH, ValorActual);
+                        Nodo.Children[i] = NodoH;
+                        return Nodo;
+                    }
 
+                
             }
+            
+
 
             return Nodo;
 
         }
 
-        public int CompareTo([AllowNull] T other)
+        public int CompareToTamaño(T ValorNodo, T ValorActual)
         {
-            throw new NotImplementedException();
+        
+            // 1 es mayor, -1 es menor
+            int Resultado = ( Convert.ToInt32(ValorActual) > Convert.ToInt32(ValorNodo)) ? 1 : -1;
+            return Resultado;
+
         }
+
     }
 }

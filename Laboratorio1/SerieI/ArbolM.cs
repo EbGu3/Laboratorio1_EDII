@@ -9,7 +9,6 @@ namespace SerieI
         public ArbolM(int grado)
         {
             this.Grado = grado;
-            Raiz = null;
         }
 
         public void Insertar(int valor)
@@ -18,7 +17,11 @@ namespace SerieI
             {
                 Raiz = new Nodo<int>(Grado);
                 Raiz.CrearNodo(Grado, Raiz, valor);
-                Console.WriteLine("Hola");
+         
+            }
+            else
+            {
+                Raiz.CrearNodo(Grado, Raiz, valor);
             }
         }
             
