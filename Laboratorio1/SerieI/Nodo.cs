@@ -13,7 +13,6 @@ namespace SerieI
 
         public Nodo(int grado)
         {
-
             Values = new List<T>();
             Children = new Nodo<T>[grado];
         }
@@ -35,10 +34,8 @@ namespace SerieI
                 }
                 else
                 {
-                    //Buscar Igualaciones en el nodo
                     var repetido = ValoresRepetidos(Nodo, Valor);
-
-                    if (repetido = true)
+                    if (repetido == true)
                     {
                         Console.WriteLine("El valor ya se encuentra en árbol");
                         return Nodo;
@@ -79,14 +76,14 @@ namespace SerieI
                 {
                     if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
                     {
-                        i++;
-                    }
-                    else
-                    {
                         Nodo<T> NodoH = new Nodo<T>(grado);
                         CrearNodo(grado, NodoH, ValorActual);
                         Nodo.Children[i] = NodoH;
                         return Nodo;
+                    }
+                    else
+                    {
+                        i++;
                     }
                 }
                 else { i++; }
@@ -111,6 +108,5 @@ namespace SerieI
             }
             return Resultado;
         }
-
     }
 }
