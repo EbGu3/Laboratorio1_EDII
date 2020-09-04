@@ -85,7 +85,7 @@ namespace SerieI
                         return Nodo;
                     }
                     else { i++; }
-                } 
+                }
             }
             return Nodo;
         }
