@@ -37,7 +37,6 @@ namespace SerieI
                     var repetido = ValoresRepetidos(Nodo, Valor);
                     if (repetido)
                     {
-                        Console.WriteLine("El valor ya se encuentra en árbol");
                         return Nodo;
                     }
                     else
@@ -59,11 +58,11 @@ namespace SerieI
             bool repetido = false;
             if (Nodo_Completo != null)
             {
-                ValoresRepetidos(Nodo_Completo, Valor_Insertado);
                 foreach (var item in Nodo_Completo.Values)
                 {
                     if (Valor_Insertado.CompareTo(item) == 0)
                     {
+                        Console.WriteLine("El valor ya se encuentra en árbol");
                         repetido = true;
                     }
                 }
@@ -78,19 +77,12 @@ namespace SerieI
             {
                 while (i < grado - 1)
                 {
-                    if (CompareToTamaño(Nodo.Values[i], ValorActual) != 0)
+                    if (ValorActual.CompareTo(Nodo.Values[i]) != 0)
                     {
-                        if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
-                        {
-                            Nodo<T> NodoH = new Nodo<T>(grado);
-                            CrearNodo(grado, NodoH, ValorActual);
-                            Nodo.Children[i] = NodoH;
-                            return Nodo;
-                        }
-                        else
-                        {
-                            i++;
-                        }
+                        Nodo<T> NodoH = new Nodo<T>(grado);
+                        CrearNodo(grado, NodoH, ValorActual);
+                        Nodo.Children[i] = NodoH;
+                        return Nodo;
                     }
                     else { i++; }
                 } 
