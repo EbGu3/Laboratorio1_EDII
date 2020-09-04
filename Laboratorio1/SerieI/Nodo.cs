@@ -90,9 +90,8 @@ namespace SerieI
 
                 if(i == grado - 1 )
                 {
-                    Nodo<T> NodoH = new Nodo<T>(grado);
-                    CrearNodo(grado, NodoH, ValorActual);
-                    Nodo.Children[i] = NodoH;
+
+                    Nodo.Children[i] = CrearNodo(grado, Nodo.Children[i], ValorActual);
                     return Nodo;
                 }
 
