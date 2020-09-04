@@ -35,7 +35,7 @@ namespace SerieI
                 else
                 {
                     var repetido = ValoresRepetidos(Nodo, Valor);
-                    if (repetido == true)
+                    if (repetido)
                     {
                         Console.WriteLine("El valor ya se encuentra en árbol");
                         return Nodo;
@@ -57,11 +57,15 @@ namespace SerieI
         public bool ValoresRepetidos(Nodo<T> Nodo_Completo, T Valor_Insertado)
         {
             bool repetido = false;
-            foreach (var item in Nodo_Completo.Values)
+            if (Nodo_Completo != null)
             {
-                if (Valor_Insertado.CompareTo(item) == 0)
+                ValoresRepetidos(Nodo_Completo, Valor_Insertado);
+                foreach (var item in Nodo_Completo.Values)
                 {
-                    repetido = true;
+                    if (Valor_Insertado.CompareTo(item) == 0)
+                    {
+                        repetido = true;
+                    }
                 }
             }
             return repetido;
@@ -69,24 +73,27 @@ namespace SerieI
         public Nodo<T> EntreNodo(int grado, T ValorActual, Nodo<T> Nodo)
         {
             int i = 0;
-            //Comparar si el dato existe
-            while (i < grado - 1)
+            var repetidos = ValoresRepetidos(Nodo, ValorActual);
+            if (!repetidos)
             {
-                if (CompareToTamaño(Nodo.Values[i], ValorActual) != 0)
+                while (i < grado - 1)
                 {
-                    if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
+                    if (CompareToTamaño(Nodo.Values[i], ValorActual) != 0)
                     {
-                        Nodo<T> NodoH = new Nodo<T>(grado);
-                        CrearNodo(grado, NodoH, ValorActual);
-                        Nodo.Children[i] = NodoH;
-                        return Nodo;
+                        if (CompareToTamaño(Nodo.Values[i], ValorActual) == 1)
+                        {
+                            Nodo<T> NodoH = new Nodo<T>(grado);
+                            CrearNodo(grado, NodoH, ValorActual);
+                            Nodo.Children[i] = NodoH;
+                            return Nodo;
+                        }
+                        else
+                        {
+                            i++;
+                        }
                     }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                else { i++; }
+                    else { i++; }
+                } 
             }
             return Nodo;
         }
