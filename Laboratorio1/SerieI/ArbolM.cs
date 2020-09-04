@@ -10,23 +10,17 @@ namespace SerieI
         {
             this.Grado = grado;
         }
-
         public void Insertar(int valor)
         {
             if(Raiz == null)
             {
                 Raiz = new Nodo<int>(Grado);
                 Raiz.CrearNodo(Grado, Raiz, valor);
-         
             }
             else
             {
                 Raiz.CrearNodo(Grado, Raiz, valor);
             }
         }
-            
-
-      
-
     }
 }

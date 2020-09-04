@@ -17,12 +17,8 @@ namespace SerieI
             Values = new List<T>();
             Children = new Nodo<T>[grado];
         }
-
-
-
         public Nodo<T> CrearNodo(int grado, Nodo<T> Nodo, T Valor)
         {
-
             if (Nodo == null)
             {
                 Nodo = new Nodo<T>(grado);
@@ -31,7 +27,7 @@ namespace SerieI
             }
             else if (Nodo.Values.Count < grado - 1)
             {
-                if(Nodo.Values.Count == 0)
+                if (Nodo.Values.Count == 0)
                 {
                     Nodo.Values.Add(Valor);
                     Nodo.Values.Sort();
@@ -40,26 +36,44 @@ namespace SerieI
                 else
                 {
                     //Buscar Igualaciones en el nodo
-                    //Agregar el nuevo valor al nodo
-                    Nodo.Values.Sort();
-                    return Nodo;
+                    var repetido = ValoresRepetidos(Nodo, Valor);
+
+                    if (repetido = true)
+                    {
+                        Console.WriteLine("El valor ya se encuentra en árbol");
+                        return Nodo;
+                    }
+                    else
+                    {
+                        Nodo.Values.Add(Valor);
+                        Nodo.Values.Sort();
+                        return Nodo;
+                    }
                 }
             }
             else
             {
-                EntreNodo(grado,Valor, Nodo);
+                EntreNodo(grado, Valor, Nodo);
             }
-
-
             return Nodo;
         }
-
-        public Nodo<T> EntreNodo(int grado,T ValorActual, Nodo<T> Nodo)
+        public bool ValoresRepetidos(Nodo<T> Nodo_Completo, T Valor_Insertado)
+        {
+            bool repetido = false;
+            foreach (var item in Nodo_Completo.Values)
+            {
+                if (Valor_Insertado.CompareTo(item) == 0)
+                {
+                    repetido = true;
+                }
+            }
+            return repetido;
+        }
+        public Nodo<T> EntreNodo(int grado, T ValorActual, Nodo<T> Nodo)
         {
             int i = 0;
-
             //Comparar si el dato existe
-            while(i < grado -1)
+            while (i < grado - 1)
             {
                 if (CompareToTamaño(Nodo.Values[i], ValorActual) != 0)
                 {
@@ -74,36 +88,28 @@ namespace SerieI
                         Nodo.Children[i] = NodoH;
                         return Nodo;
                     }
-
                 }
                 else { i++; }
             }
-            
-
-
             return Nodo;
-
         }
-
         public int CompareToTamaño(T ValorNodo, T ValorActual)
         {
             var Resultado = 0;
             // 1 es mayor, -1 es menor, son iguales
-            if(Convert.ToInt32(ValorActual) == Convert.ToInt32(ValorNodo))
+            if (Convert.ToInt32(ValorActual) == Convert.ToInt32(ValorNodo))
             {
                 Resultado = 0;
             }
-            else if(Convert.ToInt32(ValorActual) > Convert.ToInt32(ValorNodo))
+            else if (Convert.ToInt32(ValorActual) > Convert.ToInt32(ValorNodo))
             {
-                Resultado = 1; 
+                Resultado = 1;
             }
             else
             {
                 Resultado = -1;
             }
-            
             return Resultado;
-
         }
 
     }
