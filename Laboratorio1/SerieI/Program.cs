@@ -25,7 +25,7 @@ namespace SerieI
 
                 arbolitom.Insertar(valor);
 
-                Console.WriteLine("¿Desea ingresar otro valor?, Si(1), No(2)");
+               Console.WriteLine("¿Desea ingresar otro valor?, Si(1), No(2)");
                 respuesta = Convert.ToInt32(Console.ReadLine());
             }
 

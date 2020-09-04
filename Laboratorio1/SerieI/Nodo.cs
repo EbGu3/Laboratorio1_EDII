@@ -53,6 +53,7 @@ namespace SerieI
             }
             return Nodo;
         }
+
         public bool ValoresRepetidos(Nodo<T> Nodo_Completo, T Valor_Insertado)
         {
             bool repetido = false;
@@ -69,6 +70,7 @@ namespace SerieI
             }
             return repetido;
         }
+
         public Nodo<T> EntreNodo(int grado, T ValorActual, Nodo<T> Nodo)
         {
             int i = 0;
@@ -77,18 +79,27 @@ namespace SerieI
             {
                 while (i < grado - 1)
                 {
-                    if (ValorActual.CompareTo(Nodo.Values[i]) != 0)
+                    if (ValorActual.CompareTo(Nodo.Values[i]) == -1)
                     {
-                        Nodo<T> NodoH = new Nodo<T>(grado);
-                        CrearNodo(grado, NodoH, ValorActual);
-                        Nodo.Children[i] = NodoH;
+                        
+                        Nodo.Children[i] = CrearNodo(grado, Nodo.Children[i], ValorActual);
                         return Nodo;
                     }
                     else { i++; }
                 }
+
+                if(i == grado - 1 )
+                {
+                    Nodo<T> NodoH = new Nodo<T>(grado);
+                    CrearNodo(grado, NodoH, ValorActual);
+                    Nodo.Children[i] = NodoH;
+                    return Nodo;
+                }
+
             }
             return Nodo;
         }
+
         public int CompareToTamaño(T ValorNodo, T ValorActual)
         {
             var Resultado = 0;
