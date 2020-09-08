@@ -4,7 +4,7 @@ namespace SerieI
     public class ArbolM<T>
     {
         public int Grado { get; set; }
-        public Nodo<int> Raiz { get; set; }
+        private Nodo<int> Raiz { get; set; }
 
         public ArbolM(int grado)
         {

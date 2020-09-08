@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SerieI
 {
-    public class Nodo<T> where T : IComparable<T>
+    class Nodo<T> where T : IComparable<T>
     {
 
 
@@ -16,6 +16,7 @@ namespace SerieI
             Values = new List<T>();
             Children = new Nodo<T>[grado];
         }
+
         public Nodo<T> CrearNodo(int grado, Nodo<T> Nodo, T Valor)
         {
             if (Nodo == null)
