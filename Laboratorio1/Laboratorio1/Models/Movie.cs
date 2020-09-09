@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Laboratorio1.Models
+namespace API_Tree.Models
 {
     public class Movie : IComparable
     {

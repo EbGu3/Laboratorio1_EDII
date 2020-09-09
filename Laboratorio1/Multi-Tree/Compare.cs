@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace SerieI
+namespace Tree_Bib
 {
     public class Compare
     {

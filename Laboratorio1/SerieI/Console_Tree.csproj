@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Laboratorio1\API_Tree.csproj" />
+    <ProjectReference Include="..\Multi-Tree\Tree_Bib.csproj" />
+  </ItemGroup>
+</Project>

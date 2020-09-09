@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SerieI
+namespace Tree_Bib
 {
-    class Nodo<T> where T : IComparable<T>
+    public class Nodo<T> where T : IComparable<T>
     {
 
         public List<T> Values { get; set; }
-
         public Nodo<T>[] Children { get; set; }
-
         public Nodo(int grado)
         {
             Values = new List<T>();
             Children = new Nodo<T>[grado];
         }
-
         public Nodo<T> CrearNodo(int grado, Nodo<T> Nodo, T Valor)
         {
             if (Nodo == null)
@@ -82,14 +79,14 @@ namespace SerieI
                 {
                     if (ValorActual.CompareTo(Nodo.Values[i]) == -1)
                     {
-                        
+
                         Nodo.Children[i] = CrearNodo(grado, Nodo.Children[i], ValorActual);
                         return Nodo;
                     }
                     else { i++; }
                 }
 
-                if(i == grado - 1 )
+                if (i == grado - 1)
                 {
 
                     Nodo.Children[i] = CrearNodo(grado, Nodo.Children[i], ValorActual);

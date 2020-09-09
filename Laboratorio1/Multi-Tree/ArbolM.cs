@@ -1,7 +1,6 @@
 ﻿using System;
-using Laboratorio1.Models;
 
-namespace SerieI
+namespace Tree_Bib
 {
     public class ArbolM<T> where T : IComparable<T>
     {
@@ -15,7 +14,7 @@ namespace SerieI
 
         public void Insertar(T value)
         {
-            if(Raiz == null)
+            if (Raiz == null)
             {
                 Raiz = new Nodo<T>(Grado);
                 Raiz.CrearNodo(Grado, Raiz, value);
@@ -25,6 +24,5 @@ namespace SerieI
                 Raiz.CrearNodo(Grado, Raiz, value);
             }
         }
-
     }
 }

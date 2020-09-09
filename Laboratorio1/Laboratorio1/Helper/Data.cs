@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_Tree.Models;
 
-namespace Laboratorio1.Helper
+namespace API_Tree.Helper
 {
     public class Data
     {
@@ -17,6 +18,5 @@ namespace Laboratorio1.Helper
             }
         }
         //Add structures
-
     }
 }

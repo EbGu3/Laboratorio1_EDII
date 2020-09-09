@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Laboratorio1", "Laboratorio1\Laboratorio1.csproj", "{BFF7F621-609A-4AF3-8F57-37B9D0E41808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_Tree", "Laboratorio1\API_Tree.csproj", "{BFF7F621-609A-4AF3-8F57-37B9D0E41808}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multi-Tree", "SerieI\Multi-Tree.csproj", "{EA538211-A0E7-4FEA-9838-A4B276B7AE15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_Tree", "SerieI\Console_Tree.csproj", "{EA538211-A0E7-4FEA-9838-A4B276B7AE15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Tree", "Multi-Tree\Console_Tree.csproj", "{A2F89699-ED4E-4CB0-9355-371DD9792DC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tree_Bib", "Multi-Tree\Tree_Bib.csproj", "{A2F89699-ED4E-4CB0-9355-371DD9792DC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
