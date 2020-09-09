@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Tree_Bib
 {
-    public class Nodo<T> where T : IComparable<T>
+    public class Nodo<T> where T : IComparable
     {
 
         public List<T> Values { get; set; }
@@ -115,6 +115,7 @@ namespace Tree_Bib
             }
             return Resultado;
         }
+
 
     }
 }

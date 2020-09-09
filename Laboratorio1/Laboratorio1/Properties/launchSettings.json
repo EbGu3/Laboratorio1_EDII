@@ -17,14 +17,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Laboratorio1": {
+    "API_Tree": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "http://localhost:52092"
     }
   }
 }
