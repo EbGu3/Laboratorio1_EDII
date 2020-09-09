@@ -7,8 +7,8 @@ namespace SerieI
     class Nodo<T> where T : IComparable<T>
     {
 
-
         public List<T> Values { get; set; }
+
         public Nodo<T>[] Children { get; set; }
 
         public Nodo(int grado)
@@ -118,5 +118,6 @@ namespace SerieI
             }
             return Resultado;
         }
+
     }
 }

@@ -1,26 +1,30 @@
 ﻿using System;
+using Laboratorio1.Models;
+
 namespace SerieI
 {
-    public class ArbolM<T>
+    public class ArbolM<T> where T : IComparable<T>
     {
         public int Grado { get; set; }
-        private Nodo<int> Raiz { get; set; }
+        private Nodo<T> Raiz { get; set; }
 
         public ArbolM(int grado)
         {
             this.Grado = grado;
         }
-        public void Insertar(int valor)
+
+        public void Insertar(T value)
         {
             if(Raiz == null)
             {
-                Raiz = new Nodo<int>(Grado);
-                Raiz.CrearNodo(Grado, Raiz, valor);
+                Raiz = new Nodo<T>(Grado);
+                Raiz.CrearNodo(Grado, Raiz, value);
             }
             else
             {
-                Raiz.CrearNodo(Grado, Raiz, valor);
+                Raiz.CrearNodo(Grado, Raiz, value);
             }
         }
+
     }
 }
