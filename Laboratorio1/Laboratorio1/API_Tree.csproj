@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Laboratorio1' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchUrl>api/Movie</LaunchUrl>
+    <ApplicationURL>http://localhost:5000</ApplicationURL>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Multi-Tree\Tree_Bib.csproj" />
   </ItemGroup>

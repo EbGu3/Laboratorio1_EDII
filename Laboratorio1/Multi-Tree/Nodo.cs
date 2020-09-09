@@ -9,11 +9,13 @@ namespace Tree_Bib
 
         public List<T> Values { get; set; }
         public Nodo<T>[] Children { get; set; }
+
         public Nodo(int grado)
         {
             Values = new List<T>();
             Children = new Nodo<T>[grado];
         }
+
         public Nodo<T> CrearNodo(int grado, Nodo<T> Nodo, T Valor)
         {
             if (Nodo == null)
