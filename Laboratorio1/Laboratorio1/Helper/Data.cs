@@ -18,5 +18,6 @@ namespace API_Tree.Helper
             }
         }
         //Add structures
+        public int grado;
     }
 }

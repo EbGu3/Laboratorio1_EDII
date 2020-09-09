@@ -1,15 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace API_Tree.Models
 {
     public class Movie : IComparable
     {
-        public string director { get; set; }
-        public double imdbRating { get; set; }
-        public string genre { get; set; }
-        public string releaseDate { get; set; }
-        public int rottenTomatoesRating { get; set; }
+        public string director { get; set; } [Required]
+        public double imdbRating { get; set; } [Required]
+        public string genre { get; set; } [Required]
+        public string releaseDate { get; set; } [Required]
+        public int rottenTomatoesRating { get; set; } [Required]
         public string title { get; set; }
 
         public int CompareTo(object obj)
