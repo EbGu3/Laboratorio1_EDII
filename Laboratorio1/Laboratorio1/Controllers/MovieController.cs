@@ -6,6 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using API_Tree.Helper;
 using API_Tree.Models;
+using System.IO;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using Newtonsoft.Json;
+using Tree_Bib;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -65,10 +72,38 @@ namespace API_Tree.Controllers
         /// <returns></returns>
         [HttpPost, Route("populate")]
 
-        public async Task<Movie> InsertarVarios([FromForm] IFormFile file)
+        public async Task<string> InsertarVarios([FromForm] IFormFile file)
         {
-            throw new Exception();
-            //return Ok("Valores ingresados correctamente");
+            if (Data.Instance.grado > 2)
+            {
+                List<Movie> list = new List<Movie>();
+                ArbolM<Movie> arbolM = new ArbolM<Movie>(Data.Instance.grado);
+
+                using var ContentMemory = new MemoryStream();
+                await file.CopyToAsync(ContentMemory);
+                var content = Encoding.ASCII.GetString(ContentMemory.ToArray());
+
+                var nuevo = JsonConvert.DeserializeObject<List<Movie>>(content);
+
+                foreach (var item in nuevo)
+                {
+                    var movie = new Movie
+                    {
+                        director = item.director,
+                        imdbRating = item.imdbRating,
+                        genre = item.genre,
+                        releaseDate = item.releaseDate,
+                        rottenTomatoesRating = item.rottenTomatoesRating,
+                        title = item.title
+                    };
+
+                    arbolM.Insertar(movie);
+                }
+
+                return "OK";
+            }
+            else { throw new ArgumentException($"El grado {Data.Instance.grado} del árbol es incorrecto"); }
+ 
         }
 
     }

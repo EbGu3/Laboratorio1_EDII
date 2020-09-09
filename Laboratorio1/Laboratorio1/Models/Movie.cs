@@ -1,9 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Json;
 
 namespace API_Tree.Models
 {
+    [Serializable]
+
     public class Movie : IComparable
     {
         public string director { get; set; } [Required]
@@ -27,5 +30,6 @@ namespace API_Tree.Models
             var Result = u8.GetByteCount(title);
             return Result;
         }
+
     }
 }
