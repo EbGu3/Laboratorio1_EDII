@@ -9,45 +9,46 @@ namespace API_Tree.Models
 {
     public class Traversal
     {
-        public List<ArbolM<Movie>> Recorrido(string tipo)
+        public List<Nodo<Movie>> Recorrido(string tipo)
         {
-            List<ArbolM<Movie>> valor_Recorrido = new List<ArbolM<Movie>>();
+            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
+            var nodoActu = Data.Instance.full_Tree.Raiz;
             switch (tipo)
             {
                 case "postorden":
-                    valor_Recorrido = Post_Orden(Data.Instance.full_Tree);
+                    valor_Recorrido = Post_Orden(Data.Instance.full_Tree.Raiz);
                     break;
                 case "preorden":
-                    valor_Recorrido = Pre_Orden(Data.Instance.full_Tree);
+                    valor_Recorrido = Pre_Orden(Data.Instance.full_Tree.Raiz);
                     break;
                 case "inorden":
-                    valor_Recorrido = In_Orden(Data.Instance.full_Tree);
+                    valor_Recorrido = In_Orden(Data.Instance.full_Tree.Raiz);
                     break;
             }
             return valor_Recorrido;
         }
-        private List<ArbolM<Movie>> Post_Orden(ArbolM<Movie> root)
-        {
-            List<ArbolM<Movie>> valor_Recorrido = new List<ArbolM<Movie>>();
-            if (root != null)
+        private List<Nodo<Movie>> Post_Orden(Nodo<Movie> Node)
+        {//Izquierda-Derecha-Raiz
+            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
+            if (Node != null)
             {
 
             }
             return valor_Recorrido;
         }
-        private List<ArbolM<Movie>> In_Orden(ArbolM<Movie> root)
-        {
-            List<ArbolM<Movie>> valor_Recorrido = new List<ArbolM<Movie>>();
-            if (root != null)
+        private List<Nodo<Movie>> In_Orden(Nodo<Movie> Node)
+        {//Izquierda-Raiz-Derecha
+            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
+            if (Node != null)
             {
 
             }
             return valor_Recorrido;
         }
-        private List<ArbolM<Movie>> Pre_Orden(ArbolM<Movie> root)
-        {
-            List<ArbolM<Movie>> valor_Recorrido = new List<ArbolM<Movie>>();
-            if (root != null)
+        private List<Nodo<Movie>> Pre_Orden(Nodo<Movie> Node)
+        {//Raiz-Izquierda-Derecha
+            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
+            if (Node != null)
             {
 
             }

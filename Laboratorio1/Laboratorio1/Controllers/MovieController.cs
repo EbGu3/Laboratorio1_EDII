@@ -38,7 +38,7 @@ namespace API_Tree.Controllers
         {
             traversal = traversal.ToLower();
             ArbolM<Movie> Recorrido = new ArbolM<Movie>(Data.grado);
-            List<ArbolM<Movie>> valores_Arbol = new List<ArbolM<Movie>>();
+            List<Nodo<Movie>> valores_Arbol = new List<Nodo<Movie>>();
             Traversal buscar_Recorrido = new Traversal();
             valores_Arbol = buscar_Recorrido.Recorrido(traversal);
             if (valores_Arbol.Count == 0)
@@ -101,7 +101,7 @@ namespace API_Tree.Controllers
                     Data.Instance.full_Tree.Insertar(movie);
                     
                 }
-                return "OK";
+                return "Valores insertados correctamente.";
             }
             else { throw new ArgumentException($"El grado {Data.grado} del árbol es incorrecto o el archivo no cuenta con estructura Json"); }
         }
