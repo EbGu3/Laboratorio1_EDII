@@ -19,6 +19,13 @@ namespace API_Tree.Controllers
     [Route("api/[controller]")]
     public class MovieController : Controller
     {
+
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "Arbol Multicamino" };
+        }
+
         /// <summary>
         /// Realizar recorrido del árbol
         /// </summary>
@@ -30,7 +37,7 @@ namespace API_Tree.Controllers
         public ActionResult recorrido(string traversal)
         {
             traversal = traversal.ToLower();
-            ArbolM<Movie> Recorrido = new ArbolM<Movie>(Data.Instance.grado);
+            ArbolM<Movie> Recorrido = new ArbolM<Movie>(Data.grado);
             List<ArbolM<Movie>> valores_Arbol = new List<ArbolM<Movie>>();
             Traversal buscar_Recorrido = new Traversal();
             valores_Arbol = buscar_Recorrido.Recorrido(traversal);
@@ -53,7 +60,8 @@ namespace API_Tree.Controllers
         {
             if (grado > 2)
             {
-                Data.Instance.grado = grado;
+                Data.grado = grado;
+                Data.Instance.full_Tree.Grado = grado;
                 return Ok("Grado del árbol guardado correctamente.");
             }
             else
@@ -71,10 +79,9 @@ namespace API_Tree.Controllers
         [HttpPost, Route("populate")]
         public async Task<string> InsertarVarios([FromForm] IFormFile file)
         {
-            if (Data.Instance.grado > 2 && file != null)
+            if (Data.grado > 2 && file != null)
             {
-                List<Movie> list = new List<Movie>();
-
+                
                 using var ContentMemory = new MemoryStream();
                 await file.CopyToAsync(ContentMemory);
                 var content = Encoding.ASCII.GetString(ContentMemory.ToArray());
@@ -92,10 +99,11 @@ namespace API_Tree.Controllers
                         title = item.title
                     };
                     Data.Instance.full_Tree.Insertar(movie);
+                    
                 }
                 return "OK";
             }
-            else { throw new ArgumentException($"El grado {Data.Instance.grado} del árbol es incorrecto o el archivo no cuenta con estructura Json"); }
+            else { throw new ArgumentException($"El grado {Data.grado} del árbol es incorrecto o el archivo no cuenta con estructura Json"); }
         }
     }
 }

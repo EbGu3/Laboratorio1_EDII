@@ -9,19 +9,19 @@
     }
   },
   "profiles": {
-    "Laboratorio1": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "api/Movie",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5000"
-    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "api/Movie",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Laboratorio1": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/Movie",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

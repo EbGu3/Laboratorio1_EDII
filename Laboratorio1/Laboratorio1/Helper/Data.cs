@@ -19,7 +19,7 @@ namespace API_Tree.Helper
             }
         }
         //Add structures
-        public int grado;
-        public ArbolM<Movie> full_Tree = new ArbolM<Movie>(3);
+        public static int grado;
+        public ArbolM<Movie> full_Tree = new ArbolM<Movie>(grado);
     }
 }
