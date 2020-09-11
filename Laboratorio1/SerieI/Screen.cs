@@ -1,6 +1,7 @@
 ﻿using System;
 using Tree_Bib;
 using API_Tree.Models;
+using API_Tree.Helper;
 
 namespace Multi_Tree
 {
@@ -18,7 +19,6 @@ namespace Multi_Tree
                 if (option == 1)
                 {
                     //Ingresar valores
-                    ArbolM<Movie> arbolitom = new ArbolM<Movie>(grado);
                     Movie movie = new Movie();
                     movie.director = null;
                     movie.imdbRating = 6.1;
@@ -27,7 +27,7 @@ namespace Multi_Tree
                     movie.rottenTomatoesRating = 0;
                     movie.title = "The Land Girls";
 
-                    arbolitom.Insertar(movie);
+                    Data.Instance.full_Tree.Insertar(movie);
 
                     Movie movie1 = new Movie();
                     movie1.director = null;
@@ -37,7 +37,7 @@ namespace Multi_Tree
                     movie1.rottenTomatoesRating =  0;
                     movie1.title = "First Love, Last Rites";
 
-                    arbolitom.Insertar(movie1);
+                    Data.Instance.full_Tree.Insertar(movie1);
 
                     Movie movie2 = new Movie();
                     movie2.director = null;
@@ -47,7 +47,7 @@ namespace Multi_Tree
                     movie2.rottenTomatoesRating = 62;
                     movie2.title = "Slam";
 
-                    arbolitom.Insertar(movie2);
+                    Data.Instance.full_Tree.Insertar(movie2);
                 }
                 else if (option == 2)
                 {

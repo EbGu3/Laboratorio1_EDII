@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +7,9 @@ using API_Tree.Helper;
 using API_Tree.Models;
 using System.IO;
 using System.Text;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using Newtonsoft.Json;
 using Tree_Bib;
+using System.Transactions;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,13 +19,6 @@ namespace API_Tree.Controllers
     [Route("api/[controller]")]
     public class MovieController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         /// <summary>
         /// Realizar recorrido del árbol
         /// </summary>
@@ -35,12 +26,19 @@ namespace API_Tree.Controllers
         /// <response code="200">Recorrido mostrado correctamente</response>
         /// <response code="400">Árbol no cuenta con valores insertados o iniciado</response>
         /// <returns></returns>
-
         [HttpGet, Route("{traversal}")]
         public ActionResult recorrido(string traversal)
         {
-            //Recorrer árbol según solicitud
-            return Ok("Recorrido");
+            traversal = traversal.ToLower();
+            ArbolM<Movie> Recorrido = new ArbolM<Movie>(Data.Instance.grado);
+            List<ArbolM<Movie>> valores_Arbol = new List<ArbolM<Movie>>();
+            Traversal buscar_Recorrido = new Traversal();
+            valores_Arbol = buscar_Recorrido.Recorrido(traversal);
+            if (valores_Arbol.Count == 0)
+            {
+                return BadRequest("No hay valores insertados.");
+            }
+            return Ok(valores_Arbol);
         }
 
         /// <summary>
@@ -71,18 +69,15 @@ namespace API_Tree.Controllers
         /// <response code="400">El formato json no se encuentra correcto o falta un dato</response>
         /// <returns></returns>
         [HttpPost, Route("populate")]
-
         public async Task<string> InsertarVarios([FromForm] IFormFile file)
         {
-            if (Data.Instance.grado > 2)
+            if (Data.Instance.grado > 2 && file != null)
             {
                 List<Movie> list = new List<Movie>();
-                ArbolM<Movie> arbolM = new ArbolM<Movie>(Data.Instance.grado);
 
                 using var ContentMemory = new MemoryStream();
                 await file.CopyToAsync(ContentMemory);
                 var content = Encoding.ASCII.GetString(ContentMemory.ToArray());
-
                 var nuevo = JsonConvert.DeserializeObject<List<Movie>>(content);
 
                 foreach (var item in nuevo)
@@ -96,15 +91,11 @@ namespace API_Tree.Controllers
                         rottenTomatoesRating = item.rottenTomatoesRating,
                         title = item.title
                     };
-
-                    arbolM.Insertar(movie);
+                    Data.Instance.full_Tree.Insertar(movie);
                 }
-
                 return "OK";
             }
-            else { throw new ArgumentException($"El grado {Data.Instance.grado} del árbol es incorrecto"); }
- 
+            else { throw new ArgumentException($"El grado {Data.Instance.grado} del árbol es incorrecto o el archivo no cuenta con estructura Json"); }
         }
-
     }
 }

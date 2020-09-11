@@ -30,6 +30,5 @@ namespace API_Tree.Models
             var Result = u8.GetByteCount(title);
             return Result;
         }
-
     }
 }

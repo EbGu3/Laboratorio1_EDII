@@ -11,7 +11,6 @@ namespace Tree_Bib
             var u8 = Encoding.UTF8;
             var Result = u8.GetByteCount(texto);
             return Result;
-
         }
     }
 }

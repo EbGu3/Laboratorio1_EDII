@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API_Tree.Models;
+using Tree_Bib;
 
 namespace API_Tree.Helper
 {
@@ -19,5 +20,6 @@ namespace API_Tree.Helper
         }
         //Add structures
         public int grado;
+        public ArbolM<Movie> full_Tree = new ArbolM<Movie>(3);
     }
 }
