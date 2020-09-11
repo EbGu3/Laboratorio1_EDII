@@ -34,11 +34,10 @@ namespace API_Tree.Controllers
         /// <response code="400">Árbol no cuenta con valores insertados o iniciado</response>
         /// <returns></returns>
         [HttpGet, Route("{traversal}")]
-        public ActionResult recorrido(string traversal)
+        public ActionResult<List<Movie>> recorrido(string traversal)
         {
             traversal = traversal.ToLower();
-            ArbolM<Movie> Recorrido = new ArbolM<Movie>(Data.grado);
-            List<Nodo<Movie>> valores_Arbol = new List<Nodo<Movie>>();
+            List<Movie> valores_Arbol = new List<Movie>();
             Traversal buscar_Recorrido = new Traversal();
             valores_Arbol = buscar_Recorrido.Recorrido(traversal);
             if (valores_Arbol.Count == 0)
@@ -61,7 +60,6 @@ namespace API_Tree.Controllers
             if (grado > 2)
             {
                 Data.grado = grado;
-                Data.Instance.full_Tree.Grado = grado;
                 return Ok("Grado del árbol guardado correctamente.");
             }
             else
@@ -81,7 +79,6 @@ namespace API_Tree.Controllers
         {
             if (Data.grado > 2 && file != null)
             {
-                
                 using var ContentMemory = new MemoryStream();
                 await file.CopyToAsync(ContentMemory);
                 var content = Encoding.ASCII.GetString(ContentMemory.ToArray());

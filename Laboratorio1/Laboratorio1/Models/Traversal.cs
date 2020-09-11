@@ -1,58 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Tree_Bib;
 using API_Tree.Helper;
 
 namespace API_Tree.Models
 {
-    public class Traversal
+    public class Traversal : IComparable
     {
-        public List<Nodo<Movie>> Recorrido(string tipo)
+        public List<Movie> Recorrido(string tipo)
         {
-            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
-            var nodoActu = Data.Instance.full_Tree.Raiz;
+            List<Movie> valor_Recorrido = new List<Movie>();
             switch (tipo)
             {
                 case "postorden":
-                    valor_Recorrido = Post_Orden(Data.Instance.full_Tree.Raiz);
+                    valor_Recorrido = Post_Orden(Data.Instance.full_Tree.Raiz, valor_Recorrido);
                     break;
                 case "preorden":
-                    valor_Recorrido = Pre_Orden(Data.Instance.full_Tree.Raiz);
+                    valor_Recorrido = Pre_Orden(Data.Instance.full_Tree.Raiz, valor_Recorrido);
                     break;
                 case "inorden":
-                    valor_Recorrido = In_Orden(Data.Instance.full_Tree.Raiz);
+                    valor_Recorrido = In_Orden(Data.Instance.full_Tree.Raiz, valor_Recorrido);
                     break;
             }
             return valor_Recorrido;
         }
-        private List<Nodo<Movie>> Post_Orden(Nodo<Movie> Node)
+        private List<Movie> Post_Orden(Nodo<Movie> Node, List<Movie> valor_Recorrido)
         {//Izquierda-Derecha-Raiz
-            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
             if (Node != null)
             {
-
+                for (int i = 0; i < Data.grado - 1; i++)
+                {
+                    if (Node.Values.Count() > i + 1)
+                    {
+                        if (Node.Values[i + 1] != null)
+                        {
+                            if (Node.Values[i].CompareTo(Node.Values[i + 1]) == -1)
+                            {
+                                Post_Orden(Node.Children[i], valor_Recorrido);
+                                foreach (var item in Node.Values)
+                                {
+                                    valor_Recorrido.Add(item);
+                                }
+                            }
+                        }
+                    }
+                }
             }
             return valor_Recorrido;
         }
-        private List<Nodo<Movie>> In_Orden(Nodo<Movie> Node)
+        private List<Movie> In_Orden(Nodo<Movie> Node, List<Movie> valor_Recorrido)
         {//Izquierda-Raiz-Derecha
-            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
             if (Node != null)
             {
-
+                for (int i = 0; i < Data.grado - 1; i++)
+                {
+                    if (Node.Values.Count() > i + 1)
+                    {
+                        if (Node.Values[i + 1] != null)
+                        {
+                            In_Orden(Node.Children[i], valor_Recorrido);
+                            foreach (var item in Node.Values)
+                            {
+                                valor_Recorrido.Add(item);
+                            }
+                        }
+                    }
+                }
             }
             return valor_Recorrido;
         }
-        private List<Nodo<Movie>> Pre_Orden(Nodo<Movie> Node)
+        private List<Movie> Pre_Orden(Nodo<Movie> Node, List<Movie> valor_Recorrido)
         {//Raiz-Izquierda-Derecha
-            List<Nodo<Movie>> valor_Recorrido = new List<Nodo<Movie>>();
             if (Node != null)
             {
-
+                for (int i = 0; i < Data.grado - 1; i++)
+                {
+                    if (Node.Values.Count() > i + 1)
+                    {
+                        if (Node.Values[i + 1] != null)
+                        {
+                            if (Node.Values[i].CompareTo(Node.Values[i + 1]) == -1)
+                            {
+                                foreach (var item in Node.Values)
+                                {
+                                    valor_Recorrido.Add(item);
+                                }
+                                Pre_Orden(Node.Children[i], valor_Recorrido);
+                            }
+                        }
+                    }
+                }
             }
             return valor_Recorrido;
+        }
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }
