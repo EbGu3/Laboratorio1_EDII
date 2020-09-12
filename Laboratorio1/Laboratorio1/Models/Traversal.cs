@@ -38,9 +38,16 @@ namespace API_Tree.Models
                             if (Node.Values[i].CompareTo(Node.Values[i + 1]) == -1)
                             {
                                 Post_Orden(Node.Children[i], valor_Recorrido);
+                                //if (!valor_Recorrido.Contains(Node.Values[i]))
+                                //{
+                                //    valor_Recorrido.AddRange(Node.Values);
+                                //}
                                 foreach (var item in Node.Values)
                                 {
-                                    valor_Recorrido.Add(item);
+                                    if (!valor_Recorrido.Contains(item))
+                                    {
+                                        valor_Recorrido.Add(item);
+                                    }
                                 }
                             }
                         }
@@ -59,11 +66,21 @@ namespace API_Tree.Models
                     {
                         if (Node.Values[i + 1] != null)
                         {
-                            In_Orden(Node.Children[i], valor_Recorrido);
-                            foreach (var item in Node.Values)
+                            if (Node.Values[i].CompareTo(Node.Values[i + 1]) == -1)
                             {
-                                valor_Recorrido.Add(item);
+                                //if (!valor_Recorrido.Contains(Node.Values[i]))
+                                //{
+                                //    valor_Recorrido.AddRange(Node.Values);
+                                //}
+                                foreach (var item in Node.Values)
+                                {
+                                    if (!valor_Recorrido.Contains(item))
+                                    {
+                                        valor_Recorrido.Add(item);
+                                    }
+                                }
                             }
+                            In_Orden(Node.Children[i], valor_Recorrido);
                         }
                     }
                 }
@@ -82,11 +99,18 @@ namespace API_Tree.Models
                         {
                             if (Node.Values[i].CompareTo(Node.Values[i + 1]) == -1)
                             {
+                                Pre_Orden(Node.Children[i], valor_Recorrido);
+                                //if (!valor_Recorrido.Contains(Node.Values[i]))
+                                //{
+                                //    valor_Recorrido.AddRange(Node.Values);
+                                //}
                                 foreach (var item in Node.Values)
                                 {
-                                    valor_Recorrido.Add(item);
+                                    if (!valor_Recorrido.Contains(item))
+                                    {
+                                        valor_Recorrido.Add(item);
+                                    }
                                 }
-                                Pre_Orden(Node.Children[i], valor_Recorrido);
                             }
                         }
                     }
